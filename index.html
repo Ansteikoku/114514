@@ -8,13 +8,16 @@
 <body>
   <h1>6ちゃんねる</h1>
 
-  <!-- スレッド検索フォーム -->
+  <!-- 検索フォーム -->
   <form id="search-form">
     <input type="text" id="search-keyword" placeholder="スレッド検索" />
     <button type="submit">検索</button>
   </form>
 
-  <!-- 板ジャンル一覧 -->
+  <!-- エラーメッセージ表示 -->
+  <div id="error-message" style="color: red; font-weight: bold; margin-top: 10px;"></div>
+
+  <!-- 板ジャンル表示 -->
   <div id="board-genres"></div>
 
   <!-- 検索結果 -->
