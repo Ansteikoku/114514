@@ -11,7 +11,7 @@ window.onload = () => {
 
 async function loadBoards() {
   const errorDiv = document.getElementById('error-message')
-  errorDiv.textContent = ''
+  errorDiv.textContent = '板読み込み中...'
 
   try {
     const { data: boards, error } = await supabase
@@ -19,12 +19,20 @@ async function loadBoards() {
       .select('*')
       .order('sort_order', { ascending: true })
 
-    if (error) throw error
+    console.log('取得されたboards:', boards)
+    console.log('取得エラー:', error)
 
-    if (!boards || boards.length === 0) {
-      errorDiv.textContent = '板データが見つかりません。'
+    if (error) {
+      errorDiv.textContent = '❌ Supabaseエラー: ' + JSON.stringify(error, null, 2)
       return
     }
+
+    if (!boards || boards.length === 0) {
+      errorDiv.textContent = '⚠ データは取得できたが、板は1件も存在しません。'
+      return
+    }
+
+    errorDiv.textContent = '' // エラー消す
 
     const genres = {}
     boards.forEach(board => {
@@ -38,62 +46,4 @@ async function loadBoards() {
     container.innerHTML = ''
 
     for (const genre in genres) {
-      const h2 = document.createElement('h2')
-      h2.textContent = genre
-      container.appendChild(h2)
-
-      const ul = document.createElement('ul')
-      genres[genre].forEach(board => {
-        const li = document.createElement('li')
-        const link = document.createElement('a')
-        link.href = `thread.html?board=${board.slug}`
-        link.textContent = board.name
-        li.appendChild(link)
-        ul.appendChild(li)
-      })
-      container.appendChild(ul)
-    }
-  } catch (e) {
-    console.error('エラー:', e)
-    errorDiv.textContent = 'データ取得に失敗しました: ' + e.message
-  }
-}
-
-async function searchThreads(keyword) {
-  const errorDiv = document.getElementById('error-message')
-  errorDiv.textContent = ''
-
-  try {
-    if (!keyword.trim()) return
-
-    const { data, error } = await supabase
-      .from('threads')
-      .select('*')
-      .ilike('title', `%${keyword}%`)
-
-    if (error) throw error
-
-    const resultDiv = document.getElementById('search-results')
-    resultDiv.innerHTML = ''
-
-    if (!data || data.length === 0) {
-      resultDiv.textContent = '該当するスレッドはありません。'
-      return
-    }
-
-    const ul = document.createElement('ul')
-    data.forEach(thread => {
-      const li = document.createElement('li')
-      const a = document.createElement('a')
-      a.href = `thread.html?id=${thread.id}`
-      a.textContent = thread.title || '(無題)'
-      li.appendChild(a)
-      ul.appendChild(li)
-    })
-
-    resultDiv.appendChild(ul)
-  } catch (e) {
-    console.error('検索エラー:', e)
-    errorDiv.textContent = '検索に失敗しました: ' + e.message
-  }
-}
+      const h2 = document.createElement('
