@@ -1,0 +1,65 @@
+body {
+  font-family: 'MS PGothic', sans-serif;
+  background-color: #eef2ff;
+  color: #000080;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #0000cc;
+  border-bottom: 2px solid #0000cc;
+  padding-bottom: 8px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #0033cc;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  background: #ffffff;
+  border: 1px solid #999;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+a {
+  color: #0000cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin: 20px 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 6px;
+  width: 200px;
+  margin-right: 8px;
+  border: 1px solid #999;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #cce;
+  border: 1px solid #88a;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #dde;
+}
