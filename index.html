@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>6ちゃんねる - 板一覧</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>6ちゃんねる</h1>
+
+  <!-- スレッド検索フォーム -->
+  <form id="search-form">
+    <input type="text" id="search-keyword" placeholder="スレッド検索ワード" />
+    <button type="submit">検索</button>
+  </form>
+
+  <!-- 板一覧（ジャンルごと） -->
+  <div id="board-genres"></div>
+
+  <!-- 運営状況 -->
+  <div id="operation-status"></div>
+
+  <!-- 検索結果 -->
+  <div id="search-results"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.min.js"></script>
+  <script src="supabase.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
